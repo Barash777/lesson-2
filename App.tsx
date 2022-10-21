@@ -72,7 +72,7 @@ export default function App() {
 
 
             <Animated.View style={[
-                {width: 100, height: 100, backgroundColor: 'green'},
+                {width: 100, height: 100, backgroundColor: 'green', justifyContent: 'center', alignItems: 'center'},
                 {
                     transform: [{
                         translateX: animationValue,
@@ -80,7 +80,7 @@ export default function App() {
                         translateY: animationValue2
                     }]
                 }
-            ]}/>
+            ]}><View><Text>!!! Let's go !!!</Text></View></Animated.View>
 
 
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
