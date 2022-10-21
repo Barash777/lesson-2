@@ -9,10 +9,12 @@ export default function App() {
     return (
         <View style={styles.container}>
             <Text>Lesson 2</Text>
-            <HomeSvg/>
-            <ActivitySvg/>
-            <SliderSvg/>
-            <CalendarSvg/>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <HomeSvg/>
+                <ActivitySvg/>
+                <SliderSvg/>
+                <CalendarSvg/>
+            </View>
             <StatusBar style="auto"/>
         </View>
     );
@@ -21,8 +23,9 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        paddingHorizontal: 20,
         backgroundColor: '#fff',
-        alignItems: 'center',
+        // alignItems: 'center',
         justifyContent: 'center',
     },
 });
