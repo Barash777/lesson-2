@@ -1,4 +1,4 @@
-import {StyleSheet, TouchableOpacity, View, Animated} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Animated, Text} from 'react-native';
 import {HomeSvg} from "./src/icon/homeSvg/homeSvg";
 import {ActivitySvg} from "./src/icon/activitySvg/activitySvg";
 import {SliderSvg} from "./src/icon/sliderSvg/sliderSvg";
@@ -10,13 +10,61 @@ type ActiveNameSvgType = 'home' | 'calendar' | 'activity' | 'slider'
 export default function App() {
     const [activeSvg, setActiveSvg] = useState<ActiveNameSvgType>('home');
     const animationValue = useRef(new Animated.Value(0)).current
+    const animationValue2 = useRef(new Animated.Value(0)).current
 
     useEffect(() => {
-        Animated.timing(animationValue, {
+        Animated.loop(Animated.stagger(1000, [
+            Animated.timing(animationValue, {
+                toValue: 250,
+                duration: 1000,
+                useNativeDriver: true
+            }),
+            /*Animated.timing(animationValue, {
+                toValue: 0,
+                duration: 1000,
+                useNativeDriver: true
+            }),*/
+            Animated.timing(animationValue2, {
+                toValue: -150,
+                duration: 1000,
+                useNativeDriver: true,
+            }),
+            Animated.timing(animationValue, {
+                toValue: 0,
+                duration: 1000,
+                useNativeDriver: true
+            }),
+            Animated.timing(animationValue2, {
+                toValue: 0,
+                duration: 1000,
+                useNativeDriver: true,
+            }),
+
+        ])).start()
+
+        /*Animated.spring(animationValue, {
+            toValue: 250,
+            useNativeDriver: true,
+            damping: 1
+        }).start()*/
+
+        /*Animated.loop(Animated.timing(animationValue, {
             toValue: 250,
             duration: 3000,
             useNativeDriver: true
-        }).start()
+        })).start()*/
+
+        /*Animated.timing(animationValue, {
+            toValue: 250,
+            duration: 3000,
+            useNativeDriver: true
+        }).start(() => {
+            Animated.timing(animationValue, {
+                toValue: 0,
+                duration: 1000,
+                useNativeDriver: true
+            }).start()
+        })*/
     }, []);
 
     return (
@@ -27,7 +75,9 @@ export default function App() {
                 {width: 100, height: 100, backgroundColor: 'green'},
                 {
                     transform: [{
-                        translateX: animationValue
+                        translateX: animationValue,
+                    }, {
+                        translateY: animationValue2
                     }]
                 }
             ]}/>
