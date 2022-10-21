@@ -4,8 +4,13 @@ import {HomeSvg} from "./src/icon/homeSvg/homeSvg";
 import {ActivitySvg} from "./src/icon/activitySvg/activitySvg";
 import {SliderSvg} from "./src/icon/sliderSvg/sliderSvg";
 import {CalendarSvg} from "./src/icon/calendarSvg/calendarSvg";
+import {useState} from "react";
+
+type ActiveNameSvgType = 'home' | 'calendar' | 'activity' | 'slider'
 
 export default function App() {
+    const [active, setActive] = useState<ActiveNameSvgType>('home');
+
     return (
         <View style={styles.container}>
             <Text>Lesson 2</Text>
