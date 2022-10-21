@@ -1,17 +1,38 @@
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Animated} from 'react-native';
 import {HomeSvg} from "./src/icon/homeSvg/homeSvg";
 import {ActivitySvg} from "./src/icon/activitySvg/activitySvg";
 import {SliderSvg} from "./src/icon/sliderSvg/sliderSvg";
 import {CalendarSvg} from "./src/icon/calendarSvg/calendarSvg";
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 type ActiveNameSvgType = 'home' | 'calendar' | 'activity' | 'slider'
 
 export default function App() {
     const [activeSvg, setActiveSvg] = useState<ActiveNameSvgType>('home');
+    const animationValue = useRef(new Animated.Value(0)).current
+
+    useEffect(() => {
+        Animated.timing(animationValue, {
+            toValue: 250,
+            duration: 3000,
+            useNativeDriver: true
+        }).start()
+    }, []);
 
     return (
         <View style={styles.container}>
+
+
+            <Animated.View style={[
+                {width: 100, height: 100, backgroundColor: 'green'},
+                {
+                    transform: [{
+                        translateX: animationValue
+                    }]
+                }
+            ]}/>
+
+
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
 
                 <TouchableOpacity
